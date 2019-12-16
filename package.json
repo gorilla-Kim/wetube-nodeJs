@@ -6,9 +6,15 @@
   "author": "gorilla-Kim",
   "license": "ISC",
   "dependencies": {
+    "@babel/core": "^7.7.5",
+    "@babel/node": "^7.7.4",
+    "@babel/preset-env": "^7.7.6",
     "express": "^4.17.1"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "nodemon --exec babel-node index.js --delay 2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
   }
 }
