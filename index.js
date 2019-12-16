@@ -1,6 +1,8 @@
 // require : 해당 모듈을 어디선가에서 가져오는 겁니다.
 // const express = require('express')
 import express from "express";
+import morgan from "morgan";
+
 const app = express();
 const PORT = 4000; 
 
@@ -14,17 +16,11 @@ const handleHome = (req, res) => {
     res.send("welcome to the home!!")
 }
 
-const betweenHome = (req, res, next) => {
-    console.log("middle ware test!!");
-    next();
-}
-
 const handleProfile = (req, res) => {
     res.send("You are my profile");
 }
 
-// app.use 는 작성하는 위치가 중요하다.
-app.use(betweenHome);
+app.use(morgan("dev"));
 
 app.get("/", handleHome);
 app.get("/profile", handleProfile);
