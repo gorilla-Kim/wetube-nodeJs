@@ -5,18 +5,13 @@ import morgan from "morgan";
 import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
-
+import userRouter from "./routers/userRouter";
+import videoRouter from "./routers/videoRouter";
+import globalRouter from "./routers/globalRouter";
+ 
 const app = express();
 
 
-const handleHome = (req, res) => {
-    // console.log(req);
-    res.send("welcome to the home!!")
-}
-
-const handleProfile = (req, res) => {
-    res.send("You are my profile");
-}
 /**********************************************/
 /*                   미들웨어                 */
 /*********************************************/
@@ -29,7 +24,8 @@ app.use(morgan("dev"));
 /**********************************************/
 /*                   Router                  */
 /*********************************************/
-app.get("/", handleHome);
-app.get("/profile", handleProfile);
+app.use("/", globalRouter)
+app.use("/user", userRouter);
+app.use("/video", videoRouter);
 
 export default app;
