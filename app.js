@@ -12,6 +12,7 @@ import routes from "./routes";
  
 const app = express();
 
+app.set("view engine", "pug");
 
 /**********************************************/
 /*                   미들웨어                 */
