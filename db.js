@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-
 dotenv.config();
+import "./models/Video";
 
 mongoose.connect(
     process.env.MONGO_URL,
@@ -13,7 +13,7 @@ mongoose.connect(
 
 const db = mongoose.connection;
 
-const handleOpen = () => console.log("✅  connected success!!");
+const handleOpen = () => console.log("✅  connection success!!");
 const handleError = (error) => console.log(`❌ Error on DB Connection: ${error}`);
 
 db.once("open", handleOpen);
