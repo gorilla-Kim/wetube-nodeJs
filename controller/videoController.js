@@ -39,7 +39,7 @@ export const videoDetail = async (req, res) => {
     try {
         // 특정 테이블에서 특정 ID 속성(Attribute)값을 가진 데이터를 불러옵니다.
         const video = await Video.findById(id);
-        res.render("videoDetail", { pageTitle: "Video Detail", video });
+        res.render("videoDetail", { pageTitle: video.title, video });
     } catch (error) {
         console.log(`❌  Error Occur | Video Details | ${error}`);
         res.redirect(routes.home);
@@ -71,4 +71,15 @@ export const postEditVideo = async (req, res) => {
         res.redirect(routes.home);
     }
 }
-export const deleteVideo = (req, res) => res.render("deleteVideo", { pageTitle: "Delete Video" });
+export const deleteVideo = async (req, res) => {
+    const {
+        params : {id}
+    } = req;
+    try {
+        // 특정 테이블에서 특정 ID 속성(Attribute)값을 가진 데이터를 불러온뒤 삭제합니다.
+        await Video.findOneAndRemove({_id: id});
+    } catch (error) {
+        console.log(`❌  Error Occur | Delete Video | ${error}`);
+    }
+    res.redirect(routes.home);
+}
