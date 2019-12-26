@@ -13,7 +13,6 @@ import globalRouter from "./routers/globalRouter";
  
 const app = express();
 
-
 /**********************************************/
 /*                   미들웨어                 */
 /*********************************************/
