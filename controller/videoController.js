@@ -34,6 +34,16 @@ export const postUpload = async (req, res) => {
     res.redirect(routes.videoDetail(newVideo.id))
 }
 
-export const videoDetail = (req, res) => res.render("videoDetail", { pageTitle: "Video Detail" });
+export const videoDetail = async (req, res) => {
+    const {params: {id}} = req;
+    try {
+        // 특정 테이블에서 특정 ID 속성(Attribute)값을 가진 데이터를 불러옵니다.
+        const video = await Video.findById(id);
+        res.render("videoDetail", { pageTitle: "Video Detail", video });
+    } catch (error) {
+        console.log(`❌  Error Occur | Video Details | ${error}`);
+        res.redirect(routes.home);
+    }
+}
 export const editVideo = (req, res) => res.render("editVideo", { pageTitle: "Edit Video" });
 export const deleteVideo = (req, res) => res.render("deleteVideo", { pageTitle: "Delete Video" });
