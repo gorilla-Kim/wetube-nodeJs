@@ -45,5 +45,30 @@ export const videoDetail = async (req, res) => {
         res.redirect(routes.home);
     }
 }
-export const editVideo = (req, res) => res.render("editVideo", { pageTitle: "Edit Video" });
+export const getEditVideo = async (req, res) => {
+    const {params: {id}} = req;
+    try {
+        // 특정 테이블에서 특정 ID 속성(Attribute)값을 가진 데이터를 불러옵니다.
+        const video = await Video.findById(id);
+        res.render("editVideo", { pageTitle: "Edit Video", video});
+    } catch (error) {
+        console.log(`❌  Error Occur | Edit Video | ${error}`);
+        res.redirect(routes.home);
+    }
+}
+
+export const postEditVideo = async (req, res) => {
+    const {
+        params: {id},
+        body: {title, description}
+    } = req;
+    try {
+        // 특정 테이블에서 특정 ID 속성(Attribute)값을 가진 데이터를 불러옵니다.
+        await Video.findOneAndUpdate({ _id: id }, { title, description })
+        res.redirect(routes.videoDetail(id))
+    } catch (error) {
+        console.log(`❌  Error Occur | Edit Video | ${error}`);
+        res.redirect(routes.home);
+    }
+}
 export const deleteVideo = (req, res) => res.render("deleteVideo", { pageTitle: "Delete Video" });
