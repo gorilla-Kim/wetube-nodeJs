@@ -28,8 +28,8 @@
   },
   "scripts": {
     "dev:server": "nodemon --exec babel-node init.js --delay 2",
-    "dev:assets": "WEBPACK_ENV=development webpack",
-    "build:assets": "WEBPACK_ENV=production webpack"
+    "dev:assets": "cross-env WEBPACK_ENV=development webpack",
+    "build:assets": "cross-env WEBPACK_ENV=production webpack"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
