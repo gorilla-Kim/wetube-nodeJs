@@ -11,6 +11,7 @@
     "@babel/preset-env": "^7.7.6",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.4",
+    "cross-env": "^6.0.3",
     "dotenv": "^8.2.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
@@ -21,10 +22,14 @@
     "mongoose": "^5.8.2",
     "morgan": "^1.9.1",
     "multer": "^1.4.2",
-    "pug": "^2.0.4"
+    "pug": "^2.0.4",
+    "webpack": "^4.41.4",
+    "webpack-cli": "^3.3.10"
   },
   "scripts": {
-    "start": "nodemon --exec babel-node init.js --delay 2"
+    "dev:server": "nodemon --exec babel-node init.js --delay 2",
+    "dev:assets": "WEBPACK_ENV=development webpack",
+    "build:assets": "WEBPACK_ENV=production webpack"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
