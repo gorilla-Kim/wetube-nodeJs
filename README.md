@@ -41,6 +41,12 @@ app.get("/profile", handleProfile);
 
 
 
+### Serialization
+
+니콜라스 : 어떤 정보를 쿠키에게 주는가
+
+
+
 ## 💻 Utils
 
 ### eslLint 설치하기
