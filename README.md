@@ -91,3 +91,6 @@ app.get("/profile", handleProfile);
 6. go to .eslintrc.js file and change "extends" from   "airbnb-base", to ["airbnb-base", "prettier"],
 
 7. go to app.js and try save by ctrl+s  then you will see red lines if eslint activates succesfully
+
+
+update
