@@ -93,4 +93,3 @@ app.get("/profile", handleProfile);
 7. go to app.js and try save by ctrl+s  then you will see red lines if eslint activates succesfully
 
 
-update
