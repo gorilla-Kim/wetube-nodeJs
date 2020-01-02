@@ -50,6 +50,9 @@ export const githubLoginCallback = async(accessToken, refreshToken, profile, cb)
         console.log(`⭕  Find user !! ${user}`);
         if(user){
             user.githubId = id;
+            if(!user.avatarUrl){
+                user.avatarUrl = avatar_url;
+            }
             user.save();
             return cb(null, user);
         }
@@ -77,8 +80,20 @@ export const logout = (req, res) => {
     res.redirect(routes.home);
 }
 
+export const getMe = (req, res) => {
+    res.render("userDetail", { pageTitle: "User Detail", user : req.user});
+}
 export const users = (req, res) => res.render("users", { pageTitle: "Users"});
-export const userDetail = (req, res) => res.render("userDetail", { pageTitle: "User Detail"});
+export const userDetail = async(req, res) => {
+    const { params: {id} } = req;
+    try {
+        const user = await User.findById(id);
+        res.render("userDetail", { pageTitle: "User Detail", user});
+    } catch (error) {
+        console.log(`❌  Error occure | 잘못된접근입니다. | ${error} `)
+        res.redirect(routes.home);
+    }
+}
 export const editProfile = (req, res) => res.render("editProfile", { pageTitle: "Edit Profile"});
 export const changePassword = (req, res) => res.render("changePassword", { pageTitle: "Change Password"});
 
