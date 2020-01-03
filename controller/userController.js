@@ -87,7 +87,8 @@ export const users = (req, res) => res.render("users", { pageTitle: "Users"});
 export const userDetail = async(req, res) => {
     const { params: {id} } = req;
     try {
-        const user = await User.findById(id);
+        const user = await User.findById(id).populate("videos");
+        console.log(user);
         res.render("userDetail", { pageTitle: "User Detail", user});
     } catch (error) {
         console.log(`❌  Error occure | 잘못된접근입니다. | ${error} `);

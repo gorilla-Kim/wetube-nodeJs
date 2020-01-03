@@ -334,6 +334,8 @@ input[type="submit"] {
     .video-detail__container .video__info button {
       width: 100px;
       margin-bottom: 25px; }
+    .video-detail__container .video__info .video__author a {
+      color: #3498db; }
     .video-detail__container .video__info .video__title,
     .video-detail__container .video__info .video__views,
     .video-detail__container .video__info .video__description {
